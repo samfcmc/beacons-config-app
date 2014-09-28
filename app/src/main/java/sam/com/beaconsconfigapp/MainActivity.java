@@ -1,19 +1,42 @@
 package sam.com.beaconsconfigapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends Activity {
+
+    private Button myBeaconsButton;
+    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initViews();
     }
 
+    private void initViews() {
+        this.myBeaconsButton = (Button) findViewById(R.id.main_my_beacons_button);
+        this.myBeaconsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToMyBeaconsActivity();
+            }
+        });
+        this.addButton = (Button) findViewById(R.id.main_add_button);
+        this.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewBeaconActivity();
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,5 +55,15 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToMyBeaconsActivity() {
+        Intent intent = new Intent(this, MyBeaconsActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToNewBeaconActivity() {
+        Intent intent = new Intent(this, NewBeaconActivity.class);
+        startActivity(intent);
     }
 }
