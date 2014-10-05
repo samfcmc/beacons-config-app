@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "sam.com.beaconsconfigapp"
-        minSdkVersion 15
+        minSdkVersion 18
         targetSdkVersion 20
         versionCode 1
         versionName "1.0"

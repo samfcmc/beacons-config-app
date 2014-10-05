@@ -11,4 +11,6 @@
     <string name="title_activity_my_beacons">MyBeaconsActivity</string>
     <string name="title_activity_new_beacon">NewBeaconActivity</string>
 
+    <!-- Features -->
+    <string name="ble_not_supported">Bluetooth Low Energy is not supported on this device</string>
 </resources>
