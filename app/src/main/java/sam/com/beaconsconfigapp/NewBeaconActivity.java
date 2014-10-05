@@ -47,6 +47,11 @@ public class NewBeaconActivity extends Activity {
         scanBLEDevices();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.beaconScanner.stopScan();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,10 +120,15 @@ public class NewBeaconActivity extends Activity {
             Beacon beacon = getItem(position);
             TextView nameTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_name_textview);
             TextView idTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_id_textview);
+            TextView majorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_major_textview);
+            TextView minorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_minor_textview);
+            TextView powerTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_power_textview);
 
             nameTextView.setText(beacon.getDevice().getName());
-            idTextView.setText(beacon.getUuidAsString());
-
+            idTextView.setText(Utils.byteArrayToString(beacon.getUuid()));
+            majorTextView.setText(Utils.byteArrayToString(beacon.getMajor()));
+            minorTextView.setText(Utils.byteArrayToString(beacon.getMinor()));
+            powerTextView.setText(Utils.byteToString(beacon.getPower()));
             return convertView;
         }
     }

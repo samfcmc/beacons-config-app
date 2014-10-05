@@ -8,10 +8,16 @@ import android.bluetooth.BluetoothDevice;
 public class Beacon {
     private BluetoothDevice device;
     private byte[] uuid;
+    private byte[] major;
+    private byte[] minor;
+    private byte power;
 
-    public Beacon(BluetoothDevice device, byte[] uuid) {
+    public Beacon(BluetoothDevice device, byte[] uuid, byte[] major, byte[] minor, byte power) {
         this.device = device;
         this.uuid = uuid;
+        this.major = major;
+        this.minor = minor;
+        this.power = power;
     }
 
     public BluetoothDevice getDevice() {
@@ -22,12 +28,16 @@ public class Beacon {
         return uuid;
     }
 
-    public String getUuidAsString() {
-        String uuid = "";
-        for(byte b : this.uuid) {
-            String value = String.format("%02X", b & 0xFF);
-            uuid += value + ":";
-        }
-        return uuid;
+    public byte[] getMajor() {
+        return major;
     }
+
+    public byte[] getMinor() {
+        return minor;
+    }
+
+    public byte getPower() {
+        return power;
+    }
+
 }
