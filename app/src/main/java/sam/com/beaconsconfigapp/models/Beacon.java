@@ -25,10 +25,7 @@ public class Beacon {
     public String getUuidAsString() {
         String uuid = "";
         for(byte b : this.uuid) {
-            String value = Integer.toHexString(b & 0xFF);
-            if(b < 10) {
-                value = "0" + value;
-            }
+            String value = String.format("%02X", b & 0xFF);
             uuid += value + ":";
         }
         return uuid;

@@ -20,6 +20,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import sam.com.beaconsconfigapp.bluetooth.BeaconCallback;
+import sam.com.beaconsconfigapp.bluetooth.SimBeaconScanner;
 import sam.com.beaconsconfigapp.models.Beacon;
 
 
@@ -29,6 +31,7 @@ public class NewBeaconActivity extends Activity {
     private static final int REQUEST_ENABLE_BT = 60;
     private BeaconsListAdapter beaconsListAdapter;
     private ListView listView;
+    private SimBeaconScanner beaconScanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +82,23 @@ public class NewBeaconActivity extends Activity {
             Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBTIntent, REQUEST_ENABLE_BT);
         }
+
+        this.beaconScanner = new SimBeaconScanner(this.bluetoothAdapter);
     }
 
     private void scanBLEDevices() {
-        this.bluetoothAdapter.startLeScan(new BeaconsScanCallback());
+        this.beaconScanner.startScan(new BeaconCallback<Beacon>() {
+            @Override
+            public void onBeaconFound(final Beacon beacon) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        beaconsListAdapter.add(beacon);
+                        beaconsListAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        });
     }
 
     private class BeaconsListAdapter extends ArrayAdapter<Beacon> {
@@ -104,20 +120,6 @@ public class NewBeaconActivity extends Activity {
             idTextView.setText(beacon.getUuidAsString());
 
             return convertView;
-        }
-    }
-
-    private class BeaconsScanCallback implements BluetoothAdapter.LeScanCallback {
-        @Override
-        public void onLeScan(final BluetoothDevice bluetoothDevice, int i, final byte[] bytes) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    beaconsListAdapter.add(new Beacon(bluetoothDevice, bytes));
-                    beaconsListAdapter.notifyDataSetChanged();
-                }
-            });
-
         }
     }
 }
