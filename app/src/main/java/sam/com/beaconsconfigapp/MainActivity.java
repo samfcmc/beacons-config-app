@@ -1,42 +1,32 @@
 package sam.com.beaconsconfigapp;
 
 import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.os.Build;
+
 
 
 public class MainActivity extends Activity {
-
-    private Button myBeaconsButton;
-    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, new PlaceholderFragment())
+                    .commit();
+        }
     }
 
-    private void initViews() {
-        this.myBeaconsButton = (Button) findViewById(R.id.main_my_beacons_button);
-        this.myBeaconsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToMyBeaconsActivity();
-            }
-        });
-        this.addButton = (Button) findViewById(R.id.main_add_button);
-        this.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToNewBeaconActivity();
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,13 +47,38 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToMyBeaconsActivity() {
-        Intent intent = new Intent(this, MyBeaconsActivity.class);
-        startActivity(intent);
-    }
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
 
-    private void goToNewBeaconActivity() {
-        Intent intent = new Intent(this, NewBeaconActivity.class);
-        startActivity(intent);
+        public PlaceholderFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            return rootView;
+        }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+
+            if(!userLoggedIn()) {
+                goToLoginActivity();
+            }
+        }
+
+        private boolean userLoggedIn() {
+            //TODO: Change this
+            return false;
+        }
+
+        private void goToLoginActivity() {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }

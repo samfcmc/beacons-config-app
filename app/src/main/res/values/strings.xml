@@ -9,6 +9,7 @@
     <string name="major">Major</string>
     <string name="minor">Minor</string>
     <string name="power">Power</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Main Activity -->
     <string name="main_my_beacons_button">My Beacons</string>
@@ -18,4 +19,10 @@
 
     <!-- Features -->
     <string name="ble_not_supported">Bluetooth Low Energy is not supported on this device</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login">Login</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>
