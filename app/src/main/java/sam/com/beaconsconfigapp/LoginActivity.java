@@ -32,7 +32,6 @@ public class LoginActivity extends Activity {
         this.application = (BeaconConfigApplication) getApplication();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -72,12 +71,12 @@ public class LoginActivity extends Activity {
         this.application.getWebStorage().login(username, password, new WebStorageCallback<Void>() {
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT);
+                Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(Void response) {
-                Toast.makeText(LoginActivity.this, "User logged in", Toast.LENGTH_SHORT);
+                Toast.makeText(LoginActivity.this, "User logged in", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

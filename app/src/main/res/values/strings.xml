@@ -18,6 +18,8 @@
     <string name="title_activity_my_beacons">My Beacons</string>
     <string name="title_activity_new_beacon">New Beacon</string>
 
+    <!-- Ask login -->
+    <string name="ask_login_ask_textView">You have to login first</string>
     <!-- Features -->
     <string name="ble_not_supported">Bluetooth Low Energy is not supported on this device</string>
     <string name="title_activity_login">Login</string>
@@ -25,5 +27,6 @@
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
     <string name="title_activity_main">Beacons Config App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

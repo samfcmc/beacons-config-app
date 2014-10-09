@@ -2,16 +2,19 @@ package sam.com.beaconsconfigapp;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener {
 
     private BeaconConfigApplication application;
 
@@ -19,15 +22,33 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
 
         this.application = (BeaconConfigApplication) getApplication();
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
+        }
     }
 
+    private void updateFragment() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment fragment;
+        if(this.application.getWebStorage().isUserLoggedIn()) {
+            fragment = new PlaceholderFragment();
+        }
+        else {
+            fragment = new AskLoginFragment();
+        }
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateFragment();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,6 +75,12 @@ public class MainActivity extends Activity {
 
     private void logout() {
         this.application.getWebStorage().logout();
+        updateFragment();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**
