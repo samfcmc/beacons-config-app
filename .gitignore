@@ -38,3 +38,6 @@ proguard/
 .idea/
 *~
 *.swp
+
+#App specific files
+kinvey.properties

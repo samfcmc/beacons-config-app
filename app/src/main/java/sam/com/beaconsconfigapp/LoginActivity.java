@@ -6,6 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import sam.com.beaconsconfigapp.storage.KinveyWebStorage;
+import sam.com.beaconsconfigapp.storage.WebStorage;
+import sam.com.beaconsconfigapp.storage.WebStorageCallback;
 
 
 public class LoginActivity extends Activity {
@@ -17,6 +22,19 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initViews();
+
+        WebStorage webStorage = new KinveyWebStorage(this);
+        webStorage.ping(new WebStorageCallback<Boolean>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                Toast.makeText(LoginActivity.this, "Ping failed", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(Boolean response) {
+                Toast.makeText(LoginActivity.this, "Ping success", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -40,12 +58,5 @@ public class LoginActivity extends Activity {
     }
 
     private void initViews() {
-        this.cancelButton = (Button) findViewById(R.id.login_cancel_button);
-        this.cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 }
