@@ -4,6 +4,7 @@
     <string name="app_name">BeaconsConfigApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="name">Name</string>
     <string name="uuid">UUID</string>
     <string name="major">Major</string>
@@ -14,15 +15,15 @@
     <!-- Main Activity -->
     <string name="main_my_beacons_button">My Beacons</string>
     <string name="main_add_button">Configure a new beacon</string>
-    <string name="title_activity_my_beacons">MyBeaconsActivity</string>
-    <string name="title_activity_new_beacon">NewBeaconActivity</string>
+    <string name="title_activity_my_beacons">My Beacons</string>
+    <string name="title_activity_new_beacon">New Beacon</string>
 
     <!-- Features -->
     <string name="ble_not_supported">Bluetooth Low Energy is not supported on this device</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Login</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Beacons Config App</string>
 
 </resources>

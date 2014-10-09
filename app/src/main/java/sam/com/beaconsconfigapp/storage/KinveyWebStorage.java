@@ -4,14 +4,13 @@ import android.content.Context;
 
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyPingCallback;
+import com.kinvey.java.User;
 import com.kinvey.java.core.KinveyClientCallback;
 
 /**
  * Kinvey Web Storage: Implementation of web storage for Kinvey
  */
 public class KinveyWebStorage implements WebStorage {
-    private static final String appKey = "";
-    private static final String appSecret = "";
     private final Client client;
 
     public KinveyWebStorage(Context context) {
@@ -31,5 +30,30 @@ public class KinveyWebStorage implements WebStorage {
                 callback.onFailure(throwable);
             }
         });
+    }
+
+    @Override
+    public void login(String username, String password, final WebStorageCallback<Void> callback) {
+        this.client.user().login(username, password, new KinveyClientCallback<User>() {
+            @Override
+            public void onSuccess(User user) {
+                callback.onSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    @Override
+    public boolean isUserLoggedIn() {
+        return this.client.user().isUserLoggedIn();
+    }
+
+    @Override
+    public void logout() {
+        this.client.user().logout().execute();
     }
 }

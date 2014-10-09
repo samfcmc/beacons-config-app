@@ -7,6 +7,12 @@
         android:orderInCategory="100"
         android:showAsAction="never" />
 
+    <item android:id="@+id/action_logout"
+        android:title="@string/action_logout"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+
     <item android:id="@+id/action_my_beacons"
         android:title="@string/main_my_beacons_button"
         android:orderInCategory="100"

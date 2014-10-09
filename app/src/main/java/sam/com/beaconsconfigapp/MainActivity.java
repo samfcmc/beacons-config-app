@@ -1,7 +1,6 @@
 package sam.com.beaconsconfigapp;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
-
 
 
 public class MainActivity extends Activity {
+
+    private BeaconConfigApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +24,8 @@ public class MainActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        this.application = (BeaconConfigApplication) getApplication();
     }
 
 
@@ -44,13 +45,23 @@ public class MainActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == R.id.action_logout) {
+            logout();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        this.application.getWebStorage().logout();
     }
 
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
+        private BeaconConfigApplication application;
 
         public PlaceholderFragment() {
         }
@@ -65,6 +76,7 @@ public class MainActivity extends Activity {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
+            application = (BeaconConfigApplication) getActivity().getApplication();
 
             if(!userLoggedIn()) {
                 goToLoginActivity();
@@ -72,8 +84,7 @@ public class MainActivity extends Activity {
         }
 
         private boolean userLoggedIn() {
-            //TODO: Change this
-            return false;
+            return this.application.getWebStorage().isUserLoggedIn();
         }
 
         private void goToLoginActivity() {
