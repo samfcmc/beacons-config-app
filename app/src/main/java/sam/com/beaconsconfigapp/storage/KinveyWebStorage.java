@@ -2,10 +2,15 @@ package sam.com.beaconsconfigapp.storage;
 
 import android.content.Context;
 
+import com.kinvey.android.AsyncAppData;
 import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyListCallback;
 import com.kinvey.android.callback.KinveyPingCallback;
+import com.kinvey.java.Query;
 import com.kinvey.java.User;
 import com.kinvey.java.core.KinveyClientCallback;
+
+import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 
 /**
  * Kinvey Web Storage: Implementation of web storage for Kinvey
@@ -55,5 +60,21 @@ public class KinveyWebStorage implements WebStorage {
     @Override
     public void logout() {
         this.client.user().logout().execute();
+    }
+
+    public void getBeacons(final WebStorageCallback<BeaconEntity[]> callback) {
+        AsyncAppData<BeaconEntity> beacons = this.client.appData("beacons", BeaconEntity.class);
+
+        beacons.get(new Query(), new KinveyListCallback<BeaconEntity>() {
+            @Override
+            public void onSuccess(BeaconEntity[] beaconEntities) {
+                callback.onSuccess(beaconEntities);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
     }
 }

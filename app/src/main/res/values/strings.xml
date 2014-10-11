@@ -29,4 +29,7 @@
     <string name="title_activity_main">Beacons Config App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- My beacons -->
+    <string name="my_beacons_loading">Loading your beacons</string>
+
 </resources>

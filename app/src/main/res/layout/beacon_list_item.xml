@@ -60,23 +60,4 @@
         android:layout_alignStart="@+id/beacon_list_item_major_textview"
         android:paddingLeft="@dimen/activity_horizontal_margin" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/power"
-        android:id="@+id/beacon_list_item_power_label_textview"
-        android:layout_below="@+id/beacon_list_item_minor_label_textview"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/power"
-        android:id="@+id/beacon_list_item_power_textview"
-        android:layout_below="@+id/beacon_list_item_minor_textview"
-        android:layout_alignStart="@+id/beacon_list_item_minor_textview"
-        android:paddingLeft="@dimen/activity_horizontal_margin" />
-
 </RelativeLayout>

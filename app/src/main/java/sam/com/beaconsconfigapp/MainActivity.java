@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener, MyBeaconsFragment.OnFragmentInteractionListener {
 
     private BeaconConfigApplication application;
 
@@ -31,14 +31,16 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     }
 
     private void updateFragment() {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Fragment fragment;
         if(this.application.getWebStorage().isUserLoggedIn()) {
-            fragment = new PlaceholderFragment();
+            changeFragment(MyBeaconsFragment.newInstance());
         }
         else {
-            fragment = new AskLoginFragment();
+            changeFragment(AskLoginFragment.newInstance());
         }
+    }
+
+    private void changeFragment(Fragment fragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -70,7 +72,16 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
             logout();
             return true;
         }
+
+        if(id == R.id.action_my_beacons) {
+            goToMyBeacons();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToMyBeacons() {
+        changeFragment(MyBeaconsFragment.newInstance());
     }
 
     private void logout() {
@@ -80,6 +91,11 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
 
     }
 
