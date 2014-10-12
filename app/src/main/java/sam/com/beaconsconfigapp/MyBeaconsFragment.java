@@ -7,7 +7,6 @@ import android.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import sam.com.beaconsconfigapp.dummy.DummyContent;
+import sam.com.beaconsconfigapp.adapters.BeaconsListAdapter;
 import sam.com.beaconsconfigapp.storage.WebStorageCallback;
 import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 

@@ -6,7 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
     <string name="name">Name</string>
-    <string name="uuid">UUID</string>
     <string name="major">Major</string>
     <string name="minor">Minor</string>
     <string name="power">Power</string>
@@ -32,4 +31,9 @@
     <!-- My beacons -->
     <string name="my_beacons_loading">Loading your beacons</string>
 
+    <!-- Scan Beacons -->
+    <string name="uuid">UUID</string>
+    <string name="major_label">Major</string>
+    <string name="minor_label">Minor</string>
+    <string name="power_label">Power</string>
 </resources>

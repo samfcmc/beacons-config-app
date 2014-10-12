@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener, MyBeaconsFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener,
+        MyBeaconsFragment.OnFragmentInteractionListener, ScanBeaconsFragment.OnFragmentInteractionListener {
 
     private BeaconConfigApplication application;
 
@@ -77,6 +78,11 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
             goToMyBeacons();
             return true;
         }
+
+        if(id == R.id.action_add_beacon) {
+            changeFragment(ScanBeaconsFragment.newInstance());
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -96,6 +102,16 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
 
     @Override
     public void onFragmentInteraction(String id) {
+
+    }
+
+    @Override
+    public void onScanBeaconsFragmentInteraction(String id) {
+
+    }
+
+    @Override
+    public void deviceDoesNotSupportBLE() {
 
     }
 

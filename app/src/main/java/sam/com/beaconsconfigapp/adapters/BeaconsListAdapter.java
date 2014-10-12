@@ -1,4 +1,4 @@
-package sam.com.beaconsconfigapp;
+package sam.com.beaconsconfigapp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import sam.com.beaconsconfigapp.R;
 import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 
 /**
