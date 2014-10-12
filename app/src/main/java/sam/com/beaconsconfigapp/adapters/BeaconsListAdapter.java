@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import sam.com.beaconsconfigapp.R;
+import sam.com.beaconsconfigapp.Utils;
 import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 
 /**
@@ -33,10 +34,15 @@ public class BeaconsListAdapter extends ArrayAdapter<BeaconEntity> {
         TextView majorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_major_textview);
         TextView minorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_minor_textview);
 
+        String uuid = Utils.byteArrayToString(beacon.getUuid());
+        String major = Utils.byteArrayToString(beacon.getMajor());
+        String minor = Utils.byteArrayToString(beacon.getMinor());
+
         nameTextView.setText(beacon.getName());
-        idTextView.setText(beacon.getUuid());
-        majorTextView.setText(beacon.getMajor());
-        minorTextView.setText(beacon.getMinor());
+        idTextView.setText(uuid);
+        majorTextView.setText(major);
+        minorTextView.setText(minor);
+
         return convertView;
     }
 

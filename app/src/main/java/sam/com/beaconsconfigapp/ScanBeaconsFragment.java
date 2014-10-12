@@ -132,7 +132,8 @@ public class ScanBeaconsFragment extends ListFragment {
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            //mListener.onScanBeaconsFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            Beacon beacon = this.beacons.get(position);
+            this.mListener.onBeaconSelected(beacon);
         }
     }
 
@@ -147,7 +148,7 @@ public class ScanBeaconsFragment extends ListFragment {
     * >Communicating with Other Fragments</a> for more information.
     */
     public interface OnFragmentInteractionListener {
-        public void onScanBeaconsFragmentInteraction(String id);
+        public void onBeaconSelected(Beacon beacon);
         public void deviceDoesNotSupportBLE();
     }
 

@@ -18,6 +18,7 @@ import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 public class KinveyWebStorage implements WebStorage {
     private final Client client;
 
+    private static final String COLLECTION_NAME = "beacons";
     public KinveyWebStorage(Context context) {
         this.client = new Client.Builder(context.getApplicationContext()).build();
     }
@@ -63,12 +64,28 @@ public class KinveyWebStorage implements WebStorage {
     }
 
     public void getBeacons(final WebStorageCallback<BeaconEntity[]> callback) {
-        AsyncAppData<BeaconEntity> beacons = this.client.appData("beacons", BeaconEntity.class);
+        AsyncAppData<BeaconEntity> beacons = this.client.appData(COLLECTION_NAME, BeaconEntity.class);
 
         beacons.get(new Query(), new KinveyListCallback<BeaconEntity>() {
             @Override
             public void onSuccess(BeaconEntity[] beaconEntities) {
                 callback.onSuccess(beaconEntities);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    @Override
+    public void configBeacon(BeaconEntity beacon, final WebStorageCallback<BeaconEntity> callback) {
+        AsyncAppData<BeaconEntity> beacons = this.client.appData(COLLECTION_NAME, BeaconEntity.class);
+        beacons.save(beacon, new KinveyClientCallback<BeaconEntity>() {
+            @Override
+            public void onSuccess(BeaconEntity beaconEntity) {
+                callback.onSuccess(beaconEntity);
             }
 
             @Override

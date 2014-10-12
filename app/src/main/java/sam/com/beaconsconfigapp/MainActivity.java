@@ -13,9 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import sam.com.beaconsconfigapp.models.Beacon;
+import sam.com.beaconsconfigapp.storage.WebStorageCallback;
+import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
+
 
 public class MainActivity extends Activity implements AskLoginFragment.OnFragmentInteractionListener,
-        MyBeaconsFragment.OnFragmentInteractionListener, ScanBeaconsFragment.OnFragmentInteractionListener {
+        MyBeaconsFragment.OnFragmentInteractionListener, ScanBeaconsFragment.OnFragmentInteractionListener,
+        ConfigBeaconFragment.OnFragmentInteractionListener{
 
     private BeaconConfigApplication application;
 
@@ -106,13 +111,40 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     }
 
     @Override
-    public void onScanBeaconsFragmentInteraction(String id) {
-
+    public void onBeaconSelected(Beacon beacon) {
+        changeFragment(ConfigBeaconFragment.newInstance(beacon));
     }
 
     @Override
     public void deviceDoesNotSupportBLE() {
 
+    }
+
+    @Override
+    public void onConfigBeaconCancel() {
+        updateFragment();
+    }
+
+    @Override
+    public void onConfigBeaconDone(Beacon beacon, String name, String url) {
+        BeaconEntity beaconEntity = new BeaconEntity();
+        beaconEntity.setName(name);
+        beaconEntity.setUuid(beacon.getUuid());
+        beaconEntity.setMajor(beacon.getMajor());
+        beaconEntity.setMinor(beacon.getMinor());
+        beaconEntity.setContent(url);
+        this.application.getWebStorage().configBeacon(beaconEntity, new WebStorageCallback<BeaconEntity>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                Toast.makeText(MainActivity.this, "Error configuring this beacon", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(BeaconEntity response) {
+                Toast.makeText(MainActivity.this, "Beacon configured successfully", Toast.LENGTH_SHORT).show();
+                updateFragment();
+            }
+        });
     }
 
     /**

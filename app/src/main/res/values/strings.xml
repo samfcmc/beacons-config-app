@@ -10,6 +10,7 @@
     <string name="minor">Minor</string>
     <string name="power">Power</string>
     <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
 
     <!-- Main Activity -->
     <string name="main_my_beacons_button">My Beacons</string>
@@ -36,4 +37,8 @@
     <string name="major_label">Major</string>
     <string name="minor_label">Minor</string>
     <string name="power_label">Power</string>
+
+    <!-- Config Beacon -->
+    <string name="beacon_content_url">Beacon\'s content URL</string>
+    <string name="beacon_name">Beacon\'s name</string>
 </resources>

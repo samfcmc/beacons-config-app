@@ -15,13 +15,13 @@ public class BeaconEntity extends GenericJson {
     private String name;
 
     @Key
-    private String uuid;
+    private byte[] uuid;
 
     @Key
-    private String major;
+    private byte[] major;
 
     @Key
-    private String minor;
+    private byte[] minor;
 
     @Key
     private String content;
@@ -41,27 +41,27 @@ public class BeaconEntity extends GenericJson {
         this.name = name;
     }
 
-    public String getUuid() {
+    public byte[] getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(byte[] uuid) {
         this.uuid = uuid;
     }
 
-    public String getMajor() {
+    public byte[] getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(byte[] major) {
         this.major = major;
     }
 
-    public String getMinor() {
+    public byte[] getMinor() {
         return minor;
     }
 
-    public void setMinor(String minor) {
+    public void setMinor(byte[] minor) {
         this.minor = minor;
     }
 
