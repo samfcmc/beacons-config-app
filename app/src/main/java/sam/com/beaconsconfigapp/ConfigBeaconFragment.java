@@ -32,6 +32,7 @@ public class ConfigBeaconFragment extends Fragment {
     private Button doneButton;
     private EditText nameEditText;
     private EditText urlEditText;
+    private static final String BEACON = "beacon";
 
     private Beacon beacon;
 
@@ -44,22 +45,23 @@ public class ConfigBeaconFragment extends Fragment {
     public static ConfigBeaconFragment newInstance(Beacon beacon) {
         ConfigBeaconFragment fragment = new ConfigBeaconFragment();
         Bundle args = new Bundle();
+        args.putParcelable(BEACON, beacon);
         fragment.setArguments(args);
-        fragment.setBeacon(beacon);
         return fragment;
     }
     public ConfigBeaconFragment() {
         // Required empty public constructor
     }
 
-    public void setBeacon(Beacon beacon) {
-        this.beacon = beacon;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle arguments = getArguments();
+        this.beacon = arguments.getParcelable(BEACON);
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
