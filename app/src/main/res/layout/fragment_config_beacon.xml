@@ -1,86 +1,110 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sam.com.beaconsconfigapp.ConfigBeaconFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="sam.com.beaconsconfigapp.ConfigBeaconFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/uuid"
-        android:id="@+id/config_beacon_uuid_textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/uuid"
+            android:id="@+id/config_beacon_uuid_textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/major_label"
-        android:id="@+id/config_beacon_major_label_textView"
-        android:layout_below="@+id/config_beacon_uuid_textView"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/major_label"
+            android:id="@+id/config_beacon_major_label_textView"
+            android:layout_below="@+id/config_beacon_uuid_textView"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/major_label"
-        android:id="@+id/config_beacon_major_textView"
-        android:layout_alignTop="@+id/config_beacon_major_label_textView"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/major_label"
+            android:id="@+id/config_beacon_major_textView"
+            android:layout_alignTop="@+id/config_beacon_major_label_textView"
+            android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/minor_label"
-        android:id="@+id/config_beacon_minor_label_textView"
-        android:layout_below="@+id/config_beacon_major_label_textView"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/minor_label"
+            android:id="@+id/config_beacon_minor_label_textView"
+            android:layout_below="@+id/config_beacon_major_label_textView"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/minor_label"
-        android:id="@+id/config_beacon_minor_textView"
-        android:layout_below="@+id/config_beacon_major_textView"
-        android:layout_alignStart="@+id/config_beacon_major_textView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/minor_label"
+            android:id="@+id/config_beacon_minor_textView"
+            android:layout_below="@+id/config_beacon_major_textView"
+            android:layout_alignStart="@+id/config_beacon_major_textView" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/config_beacon_content_editText"
-        android:hint="@string/beacon_content_url"
-        android:layout_below="@+id/config_beacon_name_editText"
-        android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/config_beacon_content_editText"
+            android:hint="@string/beacon_content_url"
+            android:layout_below="@+id/config_beacon_name_editText"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="112dp"
+            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/done"
-        android:id="@+id/config_beacon_confirm_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:id="@+id/config_beacon_confirm_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/config_beacon_content_editText"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        android:id="@+id/config_beacon_cancel_button"
-        android:layout_alignTop="@+id/config_beacon_confirm_button"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/config_beacon_cancel_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/config_beacon_content_editText"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/config_beacon_name_editText"
-        android:hint="@string/beacon_name"
-        android:layout_below="@+id/config_beacon_minor_label_textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="56dp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/config_beacon_name_editText"
+            android:hint="@string/beacon_name"
+            android:layout_below="@+id/config_beacon_minor_label_textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="56dp"
+            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
 
-</RelativeLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:hint="@string/beacon_description"
+            android:id="@+id/config_beacon_description_editText"
+            android:layout_below="@+id/config_beacon_name_editText"
+            android:layout_alignParentStart="true"
+            android:lines="3"
+            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
+
+    </RelativeLayout>
+
+</ScrollView>

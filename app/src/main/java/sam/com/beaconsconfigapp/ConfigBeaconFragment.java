@@ -31,6 +31,7 @@ public class ConfigBeaconFragment extends Fragment {
     private Button cancelButton;
     private Button doneButton;
     private EditText nameEditText;
+    private EditText descriptionEditText;
     private EditText urlEditText;
     private static final String BEACON = "beacon";
 
@@ -89,6 +90,7 @@ public class ConfigBeaconFragment extends Fragment {
         this.doneButton = (Button) view.findViewById(R.id.config_beacon_confirm_button);
         this.nameEditText = (EditText) view.findViewById(R.id.config_beacon_name_editText);
         this.urlEditText = (EditText) view.findViewById(R.id.config_beacon_content_editText);
+        this.descriptionEditText = (EditText) view.findViewById(R.id.config_beacon_description_editText);
 
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +114,9 @@ public class ConfigBeaconFragment extends Fragment {
     private void done() {
         String name = this.nameEditText.getText().toString();
         String url = this.urlEditText.getText().toString();
-        this.mListener.onConfigBeaconDone(this.beacon, name, url);
+        String description = this.descriptionEditText.getText().toString();
+
+        this.mListener.onConfigBeaconDone(this.beacon, name, description, url);
     }
 
     @Override
@@ -144,7 +148,7 @@ public class ConfigBeaconFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         public void onConfigBeaconCancel();
-        public void onConfigBeaconDone(Beacon beacon, String name, String url);
+        public void onConfigBeaconDone(Beacon beacon, String description, String name, String url);
     }
 
 }

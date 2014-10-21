@@ -126,13 +126,19 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     }
 
     @Override
-    public void onConfigBeaconDone(Beacon beacon, String name, String url) {
+    public void onConfigBeaconDone(Beacon beacon, String name, String description, String url) {
         BeaconEntity beaconEntity = new BeaconEntity();
+        String uuid = Utils.byteArrayToHexString(beacon.getUuid());
+        String major = Utils.byteArrayToHexString(beacon.getMajor());
+        String minor = Utils.byteArrayToHexString(beacon.getMinor());
+
         beaconEntity.setName(name);
-        beaconEntity.setUuid(beacon.getUuid());
-        beaconEntity.setMajor(beacon.getMajor());
-        beaconEntity.setMinor(beacon.getMinor());
+        beaconEntity.setDescription(description);
+        beaconEntity.setUuid(uuid);
+        beaconEntity.setMajor(major);
+        beaconEntity.setMinor(minor);
         beaconEntity.setContent(url);
+
         this.application.getWebStorage().configBeacon(beaconEntity, new WebStorageCallback<BeaconEntity>() {
             @Override
             public void onFailure(Throwable throwable) {

@@ -34,9 +34,9 @@ public class BeaconsListAdapter extends ArrayAdapter<BeaconEntity> {
         TextView majorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_major_textview);
         TextView minorTextView = (TextView) convertView.findViewById(R.id.beacon_list_item_minor_textview);
 
-        String uuid = Utils.byteArrayToString(beacon.getUuid());
-        String major = Utils.byteArrayToString(beacon.getMajor());
-        String minor = Utils.byteArrayToString(beacon.getMinor());
+        String uuid = beacon.getUuid();
+        String major = beacon.getMajor();
+        String minor = beacon.getMinor();
 
         nameTextView.setText(beacon.getName());
         idTextView.setText(uuid);
