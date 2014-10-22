@@ -86,6 +86,8 @@ public class MyBeaconsFragment extends ListFragment {
     }
 
     private void updateBeaconsList(BeaconEntity[] beacons) {
+        this.beacons.clear();
+
         for(BeaconEntity beacon : beacons) {
             this.beacons.add(beacon);
         }
