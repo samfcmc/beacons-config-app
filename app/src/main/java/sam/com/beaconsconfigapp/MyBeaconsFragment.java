@@ -61,7 +61,7 @@ public class MyBeaconsFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String loadingMessage = getResources().getString(R.string.my_beacons_loading);
+        String loadingMessage = getResources().getString(R.string.loading_my_beacons);
         this.progressDialog.setMessage(loadingMessage);
         this.progressDialog.setCancelable(false);
         this.progressDialog.show();
@@ -81,7 +81,8 @@ public class MyBeaconsFragment extends ListFragment {
     }
 
     private void showError() {
-        Toast.makeText(getActivity(), "Cannot get your beacons", Toast.LENGTH_SHORT).show();
+        String message = getString(R.string.error_no_internet_connection);
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         this.progressDialog.dismiss();
     }
 

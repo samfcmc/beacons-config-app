@@ -132,7 +132,7 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     @Override
     public void onConfigBeaconDone(Beacon beacon, String name, String description, String url) {
         // Progress dialog
-        String loadingMessage = "Configuring your beacon";
+        String loadingMessage = getString(R.string.loading_config_beacon);
         this.progressDialog.setMessage(loadingMessage);
         this.progressDialog.setCancelable(false);
         this.progressDialog.show();
@@ -164,13 +164,13 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
 
     private void error() {
         this.progressDialog.dismiss();
-        String error = "Error configuring this beacon";
+        String error = getString(R.string.error_config_beacon);
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
     private void onBeaconConfigured() {
         this.progressDialog.dismiss();
-        String message = "Beacon configured successfully";
+        String message = getString(R.string.success_config_beacon);
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
         updateFragment();
     }

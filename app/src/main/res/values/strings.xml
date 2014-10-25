@@ -21,16 +21,13 @@
     <!-- Ask login -->
     <string name="ask_login_ask_textView">You have to login first</string>
     <!-- Features -->
-    <string name="ble_not_supported">Bluetooth Low Energy is not supported on this device</string>
+    <string name="ble_not_supported">Sorry but seems that your device does not support Bluetooth Low Energy</string>
     <string name="title_activity_login">Login</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
     <string name="login">Login</string>
     <string name="title_activity_main">Beacons Config App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!-- My beacons -->
-    <string name="my_beacons_loading">Loading your beacons</string>
 
     <!-- Scan Beacons -->
     <string name="uuid">UUID</string>
@@ -42,4 +39,18 @@
     <string name="beacon_content_url">Beacon\'s content URL</string>
     <string name="beacon_name">Beacon\'s name</string>
     <string name="beacon_description">Beacon\'s description</string>
+
+    <!-- Loading -->
+    <string name="loading_my_beacons">Loading your beacons</string>
+    <string name="loading_config_beacon">Configuring your beacon</string>
+
+    <!-- Errors -->
+    <string name="error_no_internet_connection">Error getting your beacons. Make sure you have an Internet connection</string>
+    <string name="error_config_beacon">Error configuring this beacon. Make sure you have an Internet connection</string>
+    <string name="error_login">Wrong username or password</string>
+
+    <!-- Success -->
+    <string name="success_config_beacon">Beacon configured successfully</string>
+    <string name="success_login">You are logged in now</string>
+
 </resources>

@@ -71,12 +71,14 @@ public class LoginActivity extends Activity {
         this.application.getWebStorage().login(username, password, new WebStorageCallback<Void>() {
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_SHORT).show();
+                String message = getString(R.string.error_login);
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(Void response) {
-                Toast.makeText(LoginActivity.this, "User logged in", Toast.LENGTH_SHORT).show();
+                String message = getString(R.string.success_login);
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

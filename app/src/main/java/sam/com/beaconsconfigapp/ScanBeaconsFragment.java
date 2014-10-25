@@ -64,7 +64,7 @@ public class ScanBeaconsFragment extends ListFragment {
         setListAdapter(this.listAdapter);
 
         if(!deviceSupportBLE()) {
-            String errorMessage = "";
+            String errorMessage = getString(R.string.ble_not_supported);
             Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT);
             this.mListener.deviceDoesNotSupportBLE();
         }
