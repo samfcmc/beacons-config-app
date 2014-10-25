@@ -3,6 +3,7 @@ package sam.com.beaconsconfigapp;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,12 +25,15 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
 
     private BeaconConfigApplication application;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         this.application = (BeaconConfigApplication) getApplication();
+        this.progressDialog = new ProgressDialog(this);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
@@ -127,6 +131,12 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
 
     @Override
     public void onConfigBeaconDone(Beacon beacon, String name, String description, String url) {
+        // Progress dialog
+        String loadingMessage = "Configuring your beacon";
+        this.progressDialog.setMessage(loadingMessage);
+        this.progressDialog.setCancelable(false);
+        this.progressDialog.show();
+
         BeaconEntity beaconEntity = new BeaconEntity();
         String uuid = Utils.byteArrayToHexString(beacon.getUuid());
         String major = Utils.byteArrayToHexString(beacon.getMajor());
@@ -142,15 +152,27 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
         this.application.getWebStorage().configBeacon(beaconEntity, new WebStorageCallback<BeaconEntity>() {
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(MainActivity.this, "Error configuring this beacon", Toast.LENGTH_SHORT).show();
+                error();
             }
 
             @Override
             public void onSuccess(BeaconEntity response) {
-                Toast.makeText(MainActivity.this, "Beacon configured successfully", Toast.LENGTH_SHORT).show();
-                updateFragment();
+                onBeaconConfigured();
             }
         });
+    }
+
+    private void error() {
+        this.progressDialog.dismiss();
+        String error = "Error configuring this beacon";
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    private void onBeaconConfigured() {
+        this.progressDialog.dismiss();
+        String message = "Beacon configured successfully";
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+        updateFragment();
     }
 
     /**
