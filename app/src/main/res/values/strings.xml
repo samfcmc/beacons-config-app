@@ -53,4 +53,10 @@
     <string name="success_config_beacon">Beacon configured successfully</string>
     <string name="success_login">You are logged in now</string>
 
+    <!-- Defaults -->
+    <string name="default_username">samfcmc</string>
+    <string name="default_password">as5592955</string>
+    <string name="default_beacon_name">Something awesome</string>
+    <string name="default_beacon_description">Sales! 50% discount in the store next to you</string>
+    <string name="default_beacon_content">samfcmc.github.io/beacons-client-app</string>
 </resources>

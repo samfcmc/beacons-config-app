@@ -63,7 +63,8 @@
             android:layout_below="@+id/config_beacon_name_editText"
             android:layout_alignParentStart="true"
             android:layout_marginTop="112dp"
-            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
+            android:layout_alignEnd="@+id/config_beacon_confirm_button"
+            android:text="@string/default_beacon_content"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -91,7 +92,8 @@
             android:layout_below="@+id/config_beacon_minor_label_textView"
             android:layout_alignParentStart="true"
             android:layout_marginTop="56dp"
-            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
+            android:layout_alignEnd="@+id/config_beacon_confirm_button"
+            android:text="@string/default_beacon_name"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -103,7 +105,8 @@
             android:layout_below="@+id/config_beacon_name_editText"
             android:layout_alignParentStart="true"
             android:lines="3"
-            android:layout_alignEnd="@+id/config_beacon_confirm_button" />
+            android:layout_alignEnd="@+id/config_beacon_confirm_button"
+            android:text="@string/default_beacon_description"/>
 
     </RelativeLayout>
 
