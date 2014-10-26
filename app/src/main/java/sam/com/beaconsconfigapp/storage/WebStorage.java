@@ -12,4 +12,5 @@ public interface WebStorage {
     void logout();
     void getBeacons(WebStorageCallback<BeaconEntity[]> callback);
     void configBeacon(BeaconEntity beacon, WebStorageCallback<BeaconEntity> callback);
+    void deleteBeacon(BeaconEntity beacon, WebStorageCallback<Void> callback);
 }

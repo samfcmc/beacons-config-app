@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.kinvey.android.AsyncAppData;
 import com.kinvey.android.Client;
+import com.kinvey.android.callback.KinveyDeleteCallback;
 import com.kinvey.android.callback.KinveyListCallback;
 import com.kinvey.android.callback.KinveyPingCallback;
 import com.kinvey.java.Query;
 import com.kinvey.java.User;
 import com.kinvey.java.core.KinveyClientCallback;
+import com.kinvey.java.model.KinveyDeleteResponse;
 
 import sam.com.beaconsconfigapp.storage.entities.BeaconEntity;
 
@@ -86,6 +88,22 @@ public class KinveyWebStorage implements WebStorage {
             @Override
             public void onSuccess(BeaconEntity beaconEntity) {
                 callback.onSuccess(beaconEntity);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                callback.onFailure(throwable);
+            }
+        });
+    }
+
+    @Override
+    public void deleteBeacon(BeaconEntity beacon, final WebStorageCallback<Void> callback) {
+        AsyncAppData<BeaconEntity> appData = this.client.appData(COLLECTION_NAME, BeaconEntity.class);
+        appData.delete(beacon.getId(), new KinveyDeleteCallback() {
+            @Override
+            public void onSuccess(KinveyDeleteResponse kinveyDeleteResponse) {
+                callback.onSuccess(null);
             }
 
             @Override

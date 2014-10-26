@@ -1,9 +1,11 @@
 package sam.com.beaconsconfigapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +28,8 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     private BeaconConfigApplication application;
 
     private ProgressDialog progressDialog;
+    private AlertDialog alertDialog;
+    private BeaconEntity selectedBeacon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,48 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
         }
+
+        initAlertDialog();
+    }
+
+    private void initAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        String message = getString(R.string.my_beacons_delete_dialog_message);
+
+        alertDialogBuilder.setMessage(message);
+
+        alertDialogBuilder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteBeacon();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.this.alertDialog.dismiss();
+            }
+        });
+
+        this.alertDialog = alertDialogBuilder.create();
+    }
+
+    private void deleteBeacon() {
+        this.application.getWebStorage().deleteBeacon(this.selectedBeacon, new WebStorageCallback<Void>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                String message = getString(R.string.error_beacon_delete);
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccess(Void response) {
+                String message = getString(R.string.success_beacon_delete);
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                updateFragment();
+            }
+        });
     }
 
     private void updateFragment() {
@@ -112,6 +158,12 @@ public class MainActivity extends Activity implements AskLoginFragment.OnFragmen
     @Override
     public void onFragmentInteraction(String id) {
 
+    }
+
+    @Override
+    public void onMyBeaconsLongClick(BeaconEntity beacon) {
+        this.selectedBeacon = beacon;
+        this.alertDialog.show();
     }
 
     @Override

@@ -48,10 +48,15 @@
     <string name="error_no_internet_connection">Error getting your beacons. Make sure you have an Internet connection</string>
     <string name="error_config_beacon">Error configuring this beacon. Make sure you have an Internet connection</string>
     <string name="error_login">Wrong username or password</string>
+    <string name="error_beacon_delete">Cannot delete this beacon. Make sure you have an Internet connection</string>
 
     <!-- Success -->
     <string name="success_config_beacon">Beacon configured successfully</string>
     <string name="success_login">You are logged in now</string>
+    <string name="success_beacon_delete">Beacon deleted from your account successfully</string>
+
+    <!-- My Beacons -->
+    <string name="my_beacons_delete_dialog_message">Do you want to delete this beacon configuration from your account?</string>
 
     <!-- Defaults -->
     <string name="default_username">samfcmc</string>
@@ -59,4 +64,5 @@
     <string name="default_beacon_name">Something awesome</string>
     <string name="default_beacon_description">Sales! 50% discount in the store next to you</string>
     <string name="default_beacon_content">samfcmc.github.io/beacons-client-app</string>
+    <string name="delete">Delete</string>
 </resources>

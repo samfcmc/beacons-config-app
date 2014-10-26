@@ -7,6 +7,7 @@ import android.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -80,6 +81,24 @@ public class MyBeaconsFragment extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                itemLongClick(position);
+                return true;
+            }
+        });
+    }
+
+    private void itemLongClick(int position) {
+        BeaconEntity item = this.listAdapter.getItem(position);
+        this.mListener.onMyBeaconsLongClick(item);
+    }
+
     private void showError() {
         String message = getString(R.string.error_no_internet_connection);
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
@@ -125,6 +144,8 @@ public class MyBeaconsFragment extends ListFragment {
         }
     }
 
+
+
     /**
     * This interface must be implemented by activities that contain this
     * fragment to allow an interaction in this fragment to be communicated
@@ -137,6 +158,7 @@ public class MyBeaconsFragment extends ListFragment {
     */
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(String id);
+        public void onMyBeaconsLongClick(BeaconEntity beacon);
     }
 
 }
